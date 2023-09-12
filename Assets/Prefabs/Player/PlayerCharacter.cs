@@ -24,7 +24,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private void MoveInputUpdated(Vector2 inputVal)
     {
-        characterController.Move(inputVal * Time.deltaTime * moveSpeed);
+        characterController.Move(new Vector3(inputVal.x, 0f, inputVal.y) * Time.deltaTime * moveSpeed);
     }
 
     // Start is called before the first frame update
