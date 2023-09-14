@@ -54,9 +54,12 @@ public class PlayerCharacter : MonoBehaviour
 
     private void ProcessAimInput()
     {
-        if (moveDir.magnitude != 0)
+        //if aim has input, use the aim to determin the turning, if not, use the move input.
+        Vector3 lookDir = aimDir.magnitude != 0 ? aimDir : moveDir; //oneliner is often bad practice.
+
+        if (lookDir.magnitude != 0)
         {
-            transform.rotation = Quaternion.LookRotation(moveDir, Vector3.up);
+            transform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);
         }
     }
 
