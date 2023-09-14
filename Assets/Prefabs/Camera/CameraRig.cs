@@ -8,6 +8,7 @@ public class CameraRig : MonoBehaviour
     [SerializeField] float armLength;
     [SerializeField] Transform cameraTrans;
     [SerializeField] Transform cameraArm;
+    [SerializeField] float turnSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,5 +26,11 @@ public class CameraRig : MonoBehaviour
         cameraTrans.position = cameraArm.position - cameraTrans.forward * armLength; 
         transform.position = followTransform.position;
     }
+
+    public void AddYawInput(float amt)
+    {
+        transform.Rotate(Vector3.up, amt * Time.deltaTime * turnSpeed);
+    }
+
 }
 

@@ -8,6 +8,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private Joystick moveStick;
     [SerializeField] private Joystick aimStick;
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] CameraRig cameraRig;
     CharacterController characterController;
     Vector2 moveInput;
     Vector2 aimInput;
@@ -43,6 +44,16 @@ public class PlayerCharacter : MonoBehaviour
     void Update()
     {
         ProcessMoveInput();
+    }
+
+    private void LateUpdate()
+    {
+        UpdateCamera();
+    }
+
+    private void UpdateCamera()
+    {
+        cameraRig.AddYawInput(moveInput.x);
     }
 
     private void ProcessMoveInput()
