@@ -9,6 +9,8 @@ public class CameraRig : MonoBehaviour
     [SerializeField] Transform cameraTrans;
     [SerializeField] Transform cameraArm;
     [SerializeField] float turnSpeed;
+
+    [SerializeField][Range(0, 1)] float followDamping;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,8 @@ public class CameraRig : MonoBehaviour
     private void LateUpdate()
     {
         cameraTrans.position = cameraArm.position - cameraTrans.forward * armLength; 
-        transform.position = followTransform.position;
+
+        transform.position = Vector3.Lerp(transform.position, followTransform.position, (1 - followDamping)*Time.deltaTime*20f);
     }
 
     public void AddYawInput(float amt)

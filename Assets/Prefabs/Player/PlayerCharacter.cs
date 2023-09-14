@@ -19,6 +19,8 @@ public class PlayerCharacter : MonoBehaviour
 
     Camera viewCamera;
 
+    Animator animator;
+
     private void Awake()
     {
         moveStick.onInputValueChanged += MoveInputUpdated;
@@ -26,6 +28,7 @@ public class PlayerCharacter : MonoBehaviour
         //initializing values
         characterController = GetComponent<CharacterController>();
         viewCamera = Camera.main;
+        animator = GetComponent<Animator>();    
     }
 
     private void AimInputUpdated(Vector2 inputVal)
@@ -51,6 +54,16 @@ public class PlayerCharacter : MonoBehaviour
     {
         ProcessMoveInput();
         ProcessAimInput();
+        UPdateAnimation();
+    }
+
+    private void UPdateAnimation()
+    {
+        float leftSpeed = Vector3.Dot(moveDir, transform.right);
+        float forwardSpeed = Vector3.Dot(moveDir, transform.forward);
+
+        animator.SetFloat("leftSpeed", leftSpeed);
+        animator.SetFloat("fwdSpeed", forwardSpeed);
     }
 
     private void ProcessAimInput()
@@ -71,7 +84,10 @@ public class PlayerCharacter : MonoBehaviour
 
     private void UpdateCamera()
     {
-        cameraRig.AddYawInput(moveInput.x);
+        if(aimDir.magnitude == 0)
+        {
+            cameraRig.AddYawInput(moveInput.x);
+        }
     }
 
     Vector3 ConvertInputToWorldDirection(Vector2 inputVal)
