@@ -13,6 +13,9 @@ public class PlayerCharacter : MonoBehaviour
     Vector2 moveInput;
     Vector2 aimInput;
 
+    Vector3 moveDir;
+    Vector3 aimDir;
+
     Camera viewCamera;
 
     private void Awake()
@@ -27,11 +30,13 @@ public class PlayerCharacter : MonoBehaviour
     private void AimInputUpdated(Vector2 inputVal)
     {
         aimInput = inputVal;
+        aimDir = ConvertInputToWorldDirection(aimInput);
     }
 
     private void MoveInputUpdated(Vector2 inputVal)
     {
-        moveInput = inputVal; 
+        moveInput = inputVal;
+        moveDir = ConvertInputToWorldDirection(moveInput);
     }
 
     // Start is called before the first frame update
@@ -44,6 +49,15 @@ public class PlayerCharacter : MonoBehaviour
     void Update()
     {
         ProcessMoveInput();
+        ProcessAimInput();
+    }
+
+    private void ProcessAimInput()
+    {
+        if (moveDir.magnitude != 0)
+        {
+            transform.rotation = Quaternion.LookRotation(moveDir, Vector3.up);
+        }
     }
 
     private void LateUpdate()
@@ -56,16 +70,16 @@ public class PlayerCharacter : MonoBehaviour
         cameraRig.AddYawInput(moveInput.x);
     }
 
-    private void ProcessMoveInput()
+    Vector3 ConvertInputToWorldDirection(Vector2 inputVal)
     {
         Vector3 rightDir = viewCamera.transform.right;
-        Vector3 upDir = Vector3.Cross(rightDir, Vector3.up); //cross is mpre expensive
-        
-        //cheaper way.
-        //Vector3 upDir = viewCamera.transform.forward;
-        //upDir.y = 0;
-        //upDir = upDir.normalized;
+        Vector3 upDir = Vector3.Cross(rightDir, Vector3.up);
 
-        characterController.Move((upDir* moveInput.y + rightDir * moveInput.x).normalized * moveSpeed * Time.deltaTime);
+        return (rightDir * inputVal.x + upDir * inputVal.y).normalized;
+    }
+
+    private void ProcessMoveInput()
+    {
+        characterController.Move(moveDir * moveSpeed * Time.deltaTime);
     }
 }
