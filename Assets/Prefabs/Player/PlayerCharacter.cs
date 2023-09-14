@@ -8,6 +8,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private Joystick moveStick;
     [SerializeField] private Joystick aimStick;
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float turnSpeed = 30f;
     [SerializeField] CameraRig cameraRig;
     CharacterController characterController;
     Vector2 moveInput;
@@ -59,7 +60,7 @@ public class PlayerCharacter : MonoBehaviour
 
         if (lookDir.magnitude != 0)
         {
-            transform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(lookDir, Vector3.up), Time.deltaTime * turnSpeed);
         }
     }
 
