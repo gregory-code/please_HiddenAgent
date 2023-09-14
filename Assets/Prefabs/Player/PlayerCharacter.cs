@@ -12,12 +12,15 @@ public class PlayerCharacter : MonoBehaviour
     Vector2 moveInput;
     Vector2 aimInput;
 
+    Camera viewCamera;
+
     private void Awake()
     {
         moveStick.onInputValueChanged += MoveInputUpdated;
         aimStick.onInputValueChanged += AimInputUpdated;
         //initializing values
         characterController = GetComponent<CharacterController>();
+        viewCamera = Camera.main;
     }
 
     private void AimInputUpdated(Vector2 inputVal)
@@ -44,6 +47,14 @@ public class PlayerCharacter : MonoBehaviour
 
     private void ProcessMoveInput()
     {
-        characterController.Move(new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed * Time.deltaTime);
+        Vector3 rightDir = viewCamera.transform.right;
+        Vector3 upDir = Vector3.Cross(rightDir, Vector3.up); //cross is mpre expensive
+        
+        //cheaper way.
+        //Vector3 upDir = viewCamera.transform.forward;
+        //upDir.y = 0;
+        //upDir = upDir.normalized;
+
+        characterController.Move((upDir* moveInput.y + rightDir * moveInput.x).normalized * moveSpeed * Time.deltaTime);
     }
 }
