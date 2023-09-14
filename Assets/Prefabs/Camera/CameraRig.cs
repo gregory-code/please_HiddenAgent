@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+[ExecuteAlways]
+public class CameraRig : MonoBehaviour
+{
+    [SerializeField] Transform followTransform;
+    [SerializeField] float armLength;
+    [SerializeField] Transform cameraTrans;
+    [SerializeField] Transform cameraArm;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void LateUpdate()
+    {
+        cameraTrans.position = cameraArm.position - cameraTrans.forward * armLength; 
+        transform.position = followTransform.position;
+    }
+}
+
