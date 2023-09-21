@@ -39,6 +39,22 @@ public class InventoryComponent : MonoBehaviour
         EquipWeapon(nextIndex);
     }
 
+    private void EquipWeapon(int weaponIndex)
+    {
+        if (weaponIndex < 0 || weaponIndex >= weapons.Count)
+        {
+            return; // index out of range
+        }
+
+        if (currentWeaponIndex != -1)
+        {
+            weapons[currentWeaponIndex].UnEnquip(); // unequip current weapon if holding any
+        }
+
+        currentWeaponIndex = weaponIndex;
+        weapons[currentWeaponIndex].Equip(); // enquip the new weapon.
+    }
+
     // Start is called before the first frame update
     void Start()
     {
