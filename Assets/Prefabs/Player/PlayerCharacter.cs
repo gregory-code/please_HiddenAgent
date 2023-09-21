@@ -82,12 +82,18 @@ public class PlayerCharacter : MonoBehaviour
             Quaternion newRot = transform.rotation; // after rotote
             
             float rotationDelta = Quaternion.Angle(prevRot, newRot); // how much whe have rotated in this frame.
-            goalAnimTurnSpeed = rotationDelta / Time.deltaTime; 
+            
+            float rotateDir = Vector3.Dot(lookDir, transform.right) > 0 ? 1 : -1;
+
+            goalAnimTurnSpeed = rotationDelta / Time.deltaTime * rotateDir; 
         }
 
         //smoothes out the turning
         animTurnSpeed = Mathf.Lerp(animTurnSpeed, goalAnimTurnSpeed, Time.deltaTime * turnAnimationSmoothLerpFactor);
-
+        if (animTurnSpeed < 0.01f)
+        {
+            animTurnSpeed = 0f;
+        }
         animator.SetFloat("turnSpeed", animTurnSpeed);
     }
 
