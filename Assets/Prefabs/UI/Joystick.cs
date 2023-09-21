@@ -14,13 +14,19 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
     RectTransform thumbstick;
     [SerializeField]
     RectTransform background;
+    [SerializeField]
+    float deadZone = 0.2f;
     public void OnDrag(PointerEventData eventData)
     {
         Vector3 touchPos = eventData.position;
         Vector3 thumbstickLocalOffset = Vector3.ClampMagnitude(touchPos - background.position, background.sizeDelta.x/2f);
 
         thumbstick.localPosition = thumbstickLocalOffset;
-        onInputValueChanged?.Invoke(thumbstickLocalOffset/ background.sizeDelta.y * 2f);
+        Vector2 outputVal = thumbstickLocalOffset / background.sizeDelta.y * 2f;
+        if (outputVal.magnitude > deadZone) // out put value has to be bigger than the dead zone before triggering the input value delegate.
+        {
+            onInputValueChanged?.Invoke(outputVal);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

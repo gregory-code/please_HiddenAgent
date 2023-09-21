@@ -85,6 +85,7 @@ public class PlayerCharacter : MonoBehaviour
             goalAnimTurnSpeed = rotationDelta / Time.deltaTime; 
         }
 
+        //smoothes out the turning
         animTurnSpeed = Mathf.Lerp(animTurnSpeed, goalAnimTurnSpeed, Time.deltaTime * turnAnimationSmoothLerpFactor);
 
         animator.SetFloat("turnSpeed", animTurnSpeed);
