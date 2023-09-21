@@ -9,6 +9,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private Joystick aimStick;
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float turnSpeed = 30f;
+    [SerializeField] float turnAnimationSmoothLerpFactor = 10f;
     [SerializeField] CameraRig cameraRig;
     CharacterController characterController;
     Vector2 moveInput;
@@ -20,6 +21,8 @@ public class PlayerCharacter : MonoBehaviour
     Camera viewCamera;
 
     Animator animator;
+
+    float animTurnSpeed = 0f;
 
     private void Awake()
     {
@@ -54,15 +57,15 @@ public class PlayerCharacter : MonoBehaviour
     {
         ProcessMoveInput();
         ProcessAimInput();
-        UPdateAnimation();
+        UpdateAnimation();
     }
 
-    private void UPdateAnimation()
+    private void UpdateAnimation()
     {
-        float leftSpeed = Vector3.Dot(moveDir, transform.right);
+        float rightSpeed = Vector3.Dot(moveDir, transform.right);
         float forwardSpeed = Vector3.Dot(moveDir, transform.forward);
 
-        animator.SetFloat("leftSpeed", leftSpeed);
+        animator.SetFloat("leftSpeed", -rightSpeed);
         animator.SetFloat("fwdSpeed", forwardSpeed);
     }
 
@@ -70,11 +73,21 @@ public class PlayerCharacter : MonoBehaviour
     {
         //if aim has input, use the aim to determin the turning, if not, use the move input.
         Vector3 lookDir = aimDir.magnitude != 0 ? aimDir : moveDir; //oneliner is often bad practice.
-
+        
+        float goalAnimTurnSpeed = 0f;
         if (lookDir.magnitude != 0)
         {
+            Quaternion prevRot = transform.rotation; // before rotate
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(lookDir, Vector3.up), Time.deltaTime * turnSpeed);
+            Quaternion newRot = transform.rotation; // after rotote
+            
+            float rotationDelta = Quaternion.Angle(prevRot, newRot); // how much whe have rotated in this frame.
+            goalAnimTurnSpeed = rotationDelta / Time.deltaTime; 
         }
+
+        animTurnSpeed = Mathf.Lerp(animTurnSpeed, goalAnimTurnSpeed, Time.deltaTime * turnAnimationSmoothLerpFactor);
+
+        animator.SetFloat("turnSpeed", animTurnSpeed);
     }
 
     private void LateUpdate()
