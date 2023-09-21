@@ -12,6 +12,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] float turnAnimationSmoothLerpFactor = 10f;
     [SerializeField] CameraRig cameraRig;
     CharacterController characterController;
+    InventoryComponent inventoryComponent;
     Vector2 moveInput;
     Vector2 aimInput;
 
@@ -28,10 +29,17 @@ public class PlayerCharacter : MonoBehaviour
     {
         moveStick.onInputValueChanged += MoveInputUpdated;
         aimStick.onInputValueChanged += AimInputUpdated;
+        aimStick.onStickTapped += AimStickTapped;
         //initializing values
         characterController = GetComponent<CharacterController>();
         viewCamera = Camera.main;
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();
+        inventoryComponent = GetComponent<InventoryComponent>();
+    }
+
+    private void AimStickTapped()
+    {
+        inventoryComponent.NextWeapon();
     }
 
     private void AimInputUpdated(Vector2 inputVal)

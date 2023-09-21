@@ -4,6 +4,12 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField] string slotName = "DefaultWeaponSlot";
+
+    public string GetSlotName()
+    {
+        return slotName;
+    }
     public GameObject Owner
     {
         get;

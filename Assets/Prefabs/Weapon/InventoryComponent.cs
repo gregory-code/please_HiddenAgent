@@ -6,6 +6,8 @@ using UnityEngine;
 public class InventoryComponent : MonoBehaviour
 {
     [SerializeField] Weapon[] initialWeaponPrefabs;
+    [SerializeField] Transform[] weaponSlots;
+    [SerializeField] Transform defaultWeaponSlot;
 
     private List<Weapon> weapons = new List<Weapon>();
 
@@ -20,7 +22,17 @@ public class InventoryComponent : MonoBehaviour
     {
         foreach(Weapon weaponPrefab in initialWeaponPrefabs)
         {
-            Weapon newWeapon = Instantiate<Weapon>(weaponPrefab);
+            Transform weaponSlot = defaultWeaponSlot;
+            foreach(Transform slot in weaponSlots)
+            {
+                if(slot.name == weaponPrefab.GetSlotName())
+                {
+                    weaponSlot = slot;
+                    break;
+                }
+            }
+
+            Weapon newWeapon = Instantiate<Weapon>(weaponPrefab, weaponSlot);
             weapons.Add(newWeapon);
             newWeapon.UnEnquip();
         }
@@ -28,7 +40,7 @@ public class InventoryComponent : MonoBehaviour
         NextWeapon();
     }
 
-    private void NextWeapon()
+    public void NextWeapon()
     {
         int nextIndex = currentWeaponIndex + 1;
         if( nextIndex >= weapons.Count )

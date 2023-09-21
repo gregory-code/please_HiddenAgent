@@ -7,8 +7,10 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
 {
     //delegate - 
     public delegate void OnInputValueChanged(Vector2 inputVal);
+    public delegate void OnStickTapped();
 
     public event OnInputValueChanged onInputValueChanged;
+    public event OnStickTapped onStickTapped;
 
     [SerializeField]
     RectTransform thumbstick;
