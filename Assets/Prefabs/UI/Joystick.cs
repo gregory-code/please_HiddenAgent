@@ -18,6 +18,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
     RectTransform background;
     [SerializeField]
     float deadZone = 0.2f;
+    bool wasDragging = false;
     public void OnDrag(PointerEventData eventData)
     {
         Vector3 touchPos = eventData.position;
@@ -29,6 +30,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
         {
             onInputValueChanged?.Invoke(outputVal);
         }
+        wasDragging = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -41,6 +43,13 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
         background.localPosition = Vector2.zero;
         thumbstick.localPosition = Vector2.zero;
         onInputValueChanged?.Invoke(Vector2.zero);
+        //put it here
+        if(wasDragging)
+        {
+            wasDragging = false;
+            return;
+        }
 
+        onStickTapped?.Invoke();
     }
 }
