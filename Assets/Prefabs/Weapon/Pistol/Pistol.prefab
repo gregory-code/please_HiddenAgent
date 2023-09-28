@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7223603165777444}
   - component: {fileID: -8724438394788192921}
+  - component: {fileID: 8805152389728628981}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -31,6 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8069543353548797926}
+  - {fileID: 1953468793962586873}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-8724438394788192921
@@ -47,6 +49,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotName: PistolSlot
   animationOverride: {fileID: 22100000, guid: 33c4b35519b76e941b84346d6187f7f9, type: 2}
+--- !u!114 &8805152389728628981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670351412846354252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b905e658c83cf1248a82abab4c51febf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimTransform: {fileID: 1953468793962586873}
+  aimDistance: 100000
+  aimLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!1 &9120176481732347659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1953468793962586873}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1953468793962586873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120176481732347659}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.102, z: 0.373}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7223603165777444}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8069543353548926304
 PrefabInstance:
   m_ObjectHideFlags: 0

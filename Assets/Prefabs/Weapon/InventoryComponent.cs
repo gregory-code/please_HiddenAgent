@@ -79,4 +79,12 @@ public class InventoryComponent : MonoBehaviour
     {
         
     }
+
+    internal void DamagePoint()
+    {
+        if(currentWeaponIndex>= 0 && currentWeaponIndex < weapons.Count)
+        {
+            weapons[currentWeaponIndex].Attack();
+        }
+    }
 }

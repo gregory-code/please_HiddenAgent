@@ -10,7 +10,7 @@ public class AimTargetingComponent : MonoBehaviour
 
     public GameObject GetTarget()
     {
-        if(Physics.Raycast(aimTransform.position, aimTransform.forward, out RaycastHit hitInfo, aimDistance, aimLayerMask))
+        if(Physics.Raycast(aimTransform.position, GetAimDir(), out RaycastHit hitInfo, aimDistance, aimLayerMask))
         {
             return hitInfo.collider.gameObject;
         }
@@ -20,6 +20,11 @@ public class AimTargetingComponent : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * aimDistance);
+        Gizmos.DrawLine(aimTransform.position, aimTransform.position + GetAimDir() * aimDistance);
+    }
+
+    Vector3 GetAimDir()
+    {
+        return new Vector3(aimTransform.forward.x, 0f, aimTransform.forward.z);
     }
 }

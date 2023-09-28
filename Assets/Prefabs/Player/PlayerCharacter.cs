@@ -83,7 +83,6 @@ public class PlayerCharacter : MonoBehaviour
 
 
         animator.SetBool("firing", aimInput.magnitude > 0);
-        
     }
 
     private void ProcessAimInput()
@@ -138,5 +137,10 @@ public class PlayerCharacter : MonoBehaviour
     private void ProcessMoveInput()
     {
         characterController.Move(moveDir * moveSpeed * Time.deltaTime);
+    }
+
+    public void DamagePoint()
+    {
+        inventoryComponent.DamagePoint();
     }
 }
