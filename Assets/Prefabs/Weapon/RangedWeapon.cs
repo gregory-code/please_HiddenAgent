@@ -5,6 +5,7 @@ using UnityEngine;
 public class RangedWeapon : Weapon
 {
     private AimTargetingComponent aimTargetingComponent;
+    [SerializeField] float damage = 10f;
     private void Awake()
     {
         aimTargetingComponent = GetComponent<AimTargetingComponent>();
@@ -14,7 +15,7 @@ public class RangedWeapon : Weapon
         GameObject target = aimTargetingComponent.GetTarget();
         if (target != null)
         {
-            Debug.Log($"attacking: {target.name}");
+            DamageGameObject(target, damage);
         }
     }
 }

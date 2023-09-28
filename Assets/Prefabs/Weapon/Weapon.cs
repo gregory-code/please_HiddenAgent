@@ -34,4 +34,9 @@ public abstract class Weapon : MonoBehaviour
     }
 
     public abstract void Attack();
+
+    protected void DamageGameObject(GameObject objectToDamage, float damageAmt)
+    {
+        objectToDamage.GetComponent<HealthComponet>()?.ChangeHealth(-damageAmt);
+    }
 }
