@@ -25,6 +25,7 @@ public class PerceptionComponent : MonoBehaviour
 
     private void PerceptionUpdated(PerceptionStimuli stimuli, bool successfullySensed)
     {
+        //update the linked linked list
         var node = perceivedStimulis.Find(stimuli);
         if(successfullySensed)
         {
@@ -42,6 +43,12 @@ public class PerceptionComponent : MonoBehaviour
             perceivedStimulis.Remove(node);  
         }
 
+
+
+
+
+
+        //determining if target need to be updated
         if (perceivedStimulis.Count != 0)
         {
             if (target == null || target != perceivedStimulis.First.Value)
