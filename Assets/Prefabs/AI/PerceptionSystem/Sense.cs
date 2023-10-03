@@ -6,14 +6,17 @@ using UnityEngine;
 
 public abstract class Sense : ScriptableObject
 {
+    [SerializeField] float forgetTime = 2f;
+
     HashSet<PerceptionStimuli> currentlyPercievableStimulis = new HashSet<PerceptionStimuli>();
-    public GameObject Owner
+    Dictionary<PerceptionStimuli, Coroutine> currentForgettingCoroutines = new Dictionary<PerceptionStimuli, Coroutine>();
+    public MonoBehaviour Owner
     {
         get;
         private set;
     }
 
-    public void Init(GameObject owner)
+    public void Init(MonoBehaviour owner)
     {
         Owner = owner; 
     }
@@ -26,15 +29,41 @@ public abstract class Sense : ScriptableObject
             if (IsStimuliSensable(stimuli) && !IsStimuliSensed(stimuli))
             { 
                 currentlyPercievableStimulis.Add(stimuli);
-                Debug.Log($"I sensed: {stimuli.gameObject.name}");
+                if(currentForgettingCoroutines.ContainsKey(stimuli))
+                {
+                    StopForgettingStimuli(stimuli);
+                }
+                else
+                {
+                    Debug.Log($"I sensed: {stimuli.gameObject.name}");
+                }
             }
 
             if(!IsStimuliSensable(stimuli) && IsStimuliSensed(stimuli))
             {
                 currentlyPercievableStimulis.Remove(stimuli);
-                Debug.Log($"I lost track of: {stimuli.gameObject.name}");
+                StartForgettingStimuli(stimuli);
             }
         }
+    }
+
+    private void StopForgettingStimuli(PerceptionStimuli stimuli)
+    {
+        Owner.StopCoroutine(currentForgettingCoroutines[stimuli]);
+        currentForgettingCoroutines.Remove(stimuli);
+    }
+
+    private void StartForgettingStimuli(PerceptionStimuli stimuli)
+    {
+        Coroutine forgettingCoroutine = Owner.StartCoroutine(ForgettingCoroutine(stimuli));
+        currentForgettingCoroutines.Add(stimuli, forgettingCoroutine); 
+    }
+
+    private IEnumerator ForgettingCoroutine(PerceptionStimuli stimuli)
+    {
+        yield return new WaitForSeconds(forgetTime);
+        currentForgettingCoroutines.Remove(stimuli); //we have forgot it already, coroutine is done.
+        Debug.Log($"I lost track of: {stimuli.gameObject.name}");
     }
 
     private bool IsStimuliSensed(PerceptionStimuli stimuli)

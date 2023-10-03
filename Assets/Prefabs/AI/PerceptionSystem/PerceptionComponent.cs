@@ -14,7 +14,7 @@ public class PerceptionComponent : MonoBehaviour
         {
             Sense newSense = ScriptableObject.Instantiate(sense);
             instantiatedSenses.Add(newSense);
-            newSense.Init(gameObject);
+            newSense.Init(this);
         }
     }
 

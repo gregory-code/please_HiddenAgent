@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Perception/SightSense")]
 public class SightSense : Sense
 {
     [SerializeField] float sightRange = 4f;
@@ -38,7 +39,7 @@ public class SightSense : Sense
         base.DrawDebug();
         if(Owner)
         {
-            Vector3 drawCenter = Owner.transform.position + Vector3.up * sightRange;
+            Vector3 drawCenter = Owner.transform.position + Vector3.up * eyeHeight;
             Gizmos.DrawWireSphere(drawCenter, sightRange);
 
             Vector3 leftDir = Quaternion.AngleAxis(halfPeripheralAngle, Vector3.up) * Owner.transform.forward;
