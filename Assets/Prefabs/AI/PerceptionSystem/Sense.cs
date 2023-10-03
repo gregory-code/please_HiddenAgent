@@ -6,6 +6,9 @@ using UnityEngine;
 
 public abstract class Sense : ScriptableObject
 {
+    public delegate void OnPerceptionUpdated(PerceptionStimuli stimuli, bool successfullySensed);
+    public event OnPerceptionUpdated onPerceptionUpdated;
+
     [SerializeField] float forgetTime = 2f;
 
     HashSet<PerceptionStimuli> currentlyPercievableStimulis = new HashSet<PerceptionStimuli>();
@@ -35,7 +38,7 @@ public abstract class Sense : ScriptableObject
                 }
                 else
                 {
-                    Debug.Log($"I sensed: {stimuli.gameObject.name}");
+                    onPerceptionUpdated.Invoke(stimuli, true);
                 }
             }
 
@@ -63,7 +66,7 @@ public abstract class Sense : ScriptableObject
     {
         yield return new WaitForSeconds(forgetTime);
         currentForgettingCoroutines.Remove(stimuli); //we have forgot it already, coroutine is done.
-        Debug.Log($"I lost track of: {stimuli.gameObject.name}");
+        onPerceptionUpdated.Invoke(stimuli, false);
     }
 
     private bool IsStimuliSensed(PerceptionStimuli stimuli)

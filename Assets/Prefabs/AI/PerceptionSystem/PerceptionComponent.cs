@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class PerceptionComponent : MonoBehaviour
     [SerializeField] Sense[] startSenses;
 
     List<Sense> instantiatedSenses = new List<Sense>();
+    LinkedList<PerceptionStimuli> perceivedStimulis = new LinkedList<PerceptionStimuli>();
+        
+    GameObject target;
 
     private void Awake()
     {
@@ -15,6 +19,39 @@ public class PerceptionComponent : MonoBehaviour
             Sense newSense = ScriptableObject.Instantiate(sense);
             instantiatedSenses.Add(newSense);
             newSense.Init(this);
+            newSense.onPerceptionUpdated += PerceptionUpdated;
+        }
+    }
+
+    private void PerceptionUpdated(PerceptionStimuli stimuli, bool successfullySensed)
+    {
+        var node = perceivedStimulis.Find(stimuli);
+        if(successfullySensed)
+        {
+            if(node != null)
+            {
+                perceivedStimulis.AddAfter(node, stimuli);
+            }
+            else
+            {
+                perceivedStimulis.AddLast(stimuli);
+            }
+        }
+        else
+        {
+            perceivedStimulis.Remove(node);  
+        }
+
+        if (perceivedStimulis.Count != 0)
+        {
+            if (target == null || target != perceivedStimulis.First.Value)
+            {
+                target = perceivedStimulis.First.Value.gameObject;
+            }
+        }
+        else
+        {
+            target = null;
         }
     }
 
@@ -38,6 +75,13 @@ public class PerceptionComponent : MonoBehaviour
         foreach(Sense sense in instantiatedSenses)
         {
             sense.DrawDebug();
+        }
+
+        if(target!=null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(target.transform.position, 1f);
+            Gizmos.DrawLine(transform.position+Vector3.up, target.transform.position+Vector3.up);
         }
     }
 }

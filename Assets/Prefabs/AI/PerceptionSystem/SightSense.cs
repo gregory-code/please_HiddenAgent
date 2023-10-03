@@ -8,6 +8,7 @@ public class SightSense : Sense
     [SerializeField] float sightRange = 4f;
     [SerializeField] float eyeHeight = 1f;
     [SerializeField] float halfPeripheralAngle = 45f;
+
     public override bool IsStimuliSensable(PerceptionStimuli stimuli)
     {
         if(Vector3.Distance(stimuli.transform.position, Owner.transform.position) > sightRange)
