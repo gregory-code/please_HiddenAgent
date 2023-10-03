@@ -63,7 +63,7 @@ public abstract class Sense : ScriptableObject
 
 
 
-    static HashSet<PerceptionStimuli> registeredStimulis;
+    static HashSet<PerceptionStimuli> registeredStimulis = new HashSet<PerceptionStimuli>();
     static public void RegisterStimuli(PerceptionStimuli stimuli)
     {
         registeredStimulis.Add(stimuli);
