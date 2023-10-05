@@ -19,7 +19,7 @@ public abstract class Sense : ScriptableObject
         private set;
     }
 
-    public void Init(MonoBehaviour owner)
+    public virtual void Init(MonoBehaviour owner)
     {
         Owner = owner; 
     }
