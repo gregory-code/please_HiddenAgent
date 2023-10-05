@@ -10,6 +10,13 @@ public class TestBehaviorTree : BehaviorTree
         BTTask_Wait waitTask = ScriptableObject.CreateInstance<BTTask_Wait>();
         waitTask.SetWaitTime(3);
 
-        root.AddChild(waitTask);
+        BTTask_Log logTask = ScriptableObject.CreateInstance<BTTask_Log>();
+        logTask.SetMessage("logging");
+
+        Sequencer sequencer = ScriptableObject.CreateInstance<Sequencer>();
+        sequencer.AddChild(waitTask);
+        sequencer.AddChild(logTask);
+
+        root.AddChild(sequencer);
     }
 }
