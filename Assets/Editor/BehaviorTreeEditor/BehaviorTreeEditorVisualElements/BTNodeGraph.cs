@@ -9,6 +9,9 @@ using UnityEngine.UIElements;
 public class BTNodeGraph : GraphView
 {
     public new class UxmlFactory : UxmlFactory<BTNodeGraph, UxmlTraits> { }
+
+    BehaviorTree tree;
+
     public BTNodeGraph()
     {
         Insert(0, new GridBackground());
@@ -32,20 +35,31 @@ public class BTNodeGraph : GraphView
             if (type.IsAbstract) continue;
             if (type == typeof(BTNode_Root)) continue;
 
-            evt.menu.AppendAction(type.Name, (arg) => CreateGraphNode(type));
+            evt.menu.AppendAction(type.Name, (arg) => CreateNode(type));
         }
 
     }
 
-    private void CreateGraphNode(Type nodeType)
+    private void CreateNode(Type nodeType)
     {
-        BTNode newNode = ScriptableObject.CreateInstance(nodeType) as BTNode;
+        BTNode newNode = tree.CreateNode(nodeType);
+        CreateGraphNode(newNode);
+    }
+
+    private void CreateGraphNode(BTNode newNode)
+    {
         BTGraphNode newGraphNode = new BTGraphNode(newNode);
         AddElement(newGraphNode);
     }
 
     internal void PoulateTree(BehaviorTree selectedAsTree)
     {
-        Debug.Log($"Populating tree: {selectedAsTree.name}");
+        DeleteElements(graphElements);
+        tree = selectedAsTree;
+        tree.PreConstruct(); //ensures that there is the root node
+        foreach(BTNode node in tree.GetNodes())
+        {
+            CreateGraphNode(node);
+        }
     }
 }
