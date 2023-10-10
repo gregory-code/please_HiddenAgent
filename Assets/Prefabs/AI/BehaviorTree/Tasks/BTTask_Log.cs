@@ -16,5 +16,4 @@ public class BTTask_Log : BTNode
         Debug.Log(message);
         return BTNodeResult.Success;
     }
-
 }

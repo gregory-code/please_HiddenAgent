@@ -24,6 +24,7 @@ public abstract class BTNode : ScriptableObject
             //if not in progess, we have either failed or successed.
             if(executeResult != BTNodeResult.InProgress)
             {
+                End();
                 return executeResult;
             }
         }
