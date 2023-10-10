@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Compositor : BTNode, IBTNodeParent
+public abstract class Compositor : BTNode, IBTNodeParent
 {
     LinkedList<BTNode> children = new LinkedList<BTNode>();
 

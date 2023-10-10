@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -19,5 +20,32 @@ public class BTNodeGraph : GraphView
 
         StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/BehaviorTreeEditor/BehaviorTreeEditor.uss");
         styleSheets.Add(styleSheet);
+    }
+
+    public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+    {
+        base.BuildContextualMenu(evt);
+
+        var allNodeTypes = TypeCache.GetTypesDerivedFrom<BTNode>();
+        foreach ( System.Type type in allNodeTypes )
+        {
+            if (type.IsAbstract) continue;
+            if (type == typeof(BTNode_Root)) continue;
+
+            evt.menu.AppendAction(type.Name, (arg) => CreateGraphNode(type));
+        }
+
+    }
+
+    private void CreateGraphNode(Type nodeType)
+    {
+        BTNode newNode = ScriptableObject.CreateInstance(nodeType) as BTNode;
+        BTGraphNode newGraphNode = new BTGraphNode(newNode);
+        AddElement(newGraphNode);
+    }
+
+    internal void PoulateTree(BehaviorTree selectedAsTree)
+    {
+        Debug.Log($"Populating tree: {selectedAsTree.name}");
     }
 }
