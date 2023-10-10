@@ -39,7 +39,7 @@ public class BehaviorTree : ScriptableObject
     public BTNode CreateNode(System.Type nodeType)
     {
         BTNode newNode = ScriptableObject.CreateInstance(nodeType) as BTNode;
-        
+        newNode.name = nodeType.Name;
         nodes.Add(newNode);
         AssetDatabase.AddObjectToAsset(newNode, this);
 
