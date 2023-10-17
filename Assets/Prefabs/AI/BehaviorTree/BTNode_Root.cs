@@ -6,6 +6,16 @@ public class BTNode_Root : BTNode, IBTNodeParent
 {
     BTNode child;
 
+    public override BTNodePortType GetInputPortType()
+    {
+        return BTNodePortType.None;
+    }
+
+    public override BTNodePortType GetOutputPortType()
+    {
+        return BTNodePortType.Single;
+    }
+
     public void AddChild(BTNode childToAdd)
     {
         child = childToAdd;

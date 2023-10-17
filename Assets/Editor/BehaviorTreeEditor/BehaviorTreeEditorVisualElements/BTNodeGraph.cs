@@ -56,6 +56,7 @@ public class BTNodeGraph : GraphView
     internal void PoulateTree(BehaviorTree selectedAsTree)
     {
         SaveTree();
+
         DeleteElements(graphElements);
         tree = selectedAsTree;
         tree.PreConstruct(); //ensures that there is the root node

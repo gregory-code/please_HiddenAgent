@@ -9,6 +9,11 @@ public abstract class Compositor : BTNode, IBTNodeParent
 
     LinkedListNode<BTNode> current = null;
 
+    public override BTNodePortType GetOutputPortType()
+    {
+        return BTNodePortType.Multi;
+    }
+
     //move to the next avaliable node, return true if there is one.
     protected bool Next()
     { 
