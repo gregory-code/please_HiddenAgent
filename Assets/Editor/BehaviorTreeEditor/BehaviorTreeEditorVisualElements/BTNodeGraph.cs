@@ -141,6 +141,7 @@ public class BTNodeGraph : GraphView
             CreateGraphNode(node);
         }
 
+        //creating edges.
         foreach(BTNode node in tree.GetNodes())
         {
             IBTNodeParent nodeAsParent = node as IBTNodeParent;
