@@ -39,6 +39,25 @@ public class BTGraphNode : Node
 
         if(inputPort != null)
             inputContainer.Add(inputPort);
+    
+        switch(Node.GetOutputPortType())
+        {
+            case BTNodePortType.Single:
+                outputPort = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(BTNode));
+                outputPort.portName = "child";
+                break;
+
+            case BTNodePortType.Multi:
+                outputPort = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(BTNode));
+                outputPort.portName = "children";
+                break;
+            default: break;
+        }
+
+        if(outputPort != null)
+        {
+            outputContainer.Add(outputPort);
+        }
     }
 
     public override void SetPosition(Rect newPos)
