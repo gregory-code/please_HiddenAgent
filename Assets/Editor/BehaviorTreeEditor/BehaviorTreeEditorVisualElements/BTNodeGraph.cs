@@ -48,6 +48,7 @@ public class BTNodeGraph : GraphView
 
         foreach(GraphElement element in elementsToRemove)
         {
+            //handle node removal
             BTGraphNode graphNode = element as BTGraphNode;
             if (graphNode != null)
             {
@@ -58,6 +59,20 @@ public class BTNodeGraph : GraphView
                 else
                 {
                     tree.RemoveNode(graphNode.Node);
+                }
+            }
+
+            //handle edge removal
+            Edge edge = element as Edge;
+            if(edge != null)
+            {
+                BTGraphNode inputGraphNode = edge.output.node as BTGraphNode;
+                BTGraphNode outputGraphNode = edge.input.node as BTGraphNode;
+
+                IBTNodeParent parent = inputGraphNode.Node as IBTNodeParent;
+                if(parent != null)
+                {
+                    parent.RemoveChild(outputGraphNode.Node);
                 }
             }
         }
