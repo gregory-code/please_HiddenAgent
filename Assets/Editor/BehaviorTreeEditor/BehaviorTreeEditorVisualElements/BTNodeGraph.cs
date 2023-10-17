@@ -34,7 +34,31 @@ public class BTNodeGraph : GraphView
             HandleEdgeCreation(graphViewChange.edgesToCreate);
         }
 
+        if(graphViewChange.elementsToRemove != null)
+        {
+            HadleElementRemoval(graphViewChange.elementsToRemove);
+        }
+
         return graphViewChange;
+    }
+
+    private void HadleElementRemoval(List<GraphElement> elementsToRemove)
+    {
+        GraphElement elementToKeep = null;
+
+        foreach(GraphElement element in elementsToRemove)
+        {
+            BTGraphNode graphNode = element as BTGraphNode;
+            if(graphNode.Node.GetType() == typeof(BTNode_Root))
+            {
+                elementToKeep = element;
+            }
+        }
+
+        if(elementToKeep != null)
+        {
+            elementsToRemove.Remove(elementToKeep);
+        }
     }
 
     private void HandleEdgeCreation(List<Edge> edgesToCreate)
@@ -82,8 +106,11 @@ public class BTNodeGraph : GraphView
     internal void PoulateTree(BehaviorTree selectedAsTree)
     {
         SaveTree();
-
+        
+        graphViewChanged -= GraphChange;
         DeleteElements(graphElements);
+        graphViewChanged += GraphChange;
+
         tree = selectedAsTree;
         tree.PreConstruct(); //ensures that there is the root node
         foreach(BTNode node in tree.GetNodes())
