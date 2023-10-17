@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -54,12 +55,21 @@ public class BTNodeGraph : GraphView
 
     internal void PoulateTree(BehaviorTree selectedAsTree)
     {
+        SaveTree();
         DeleteElements(graphElements);
         tree = selectedAsTree;
         tree.PreConstruct(); //ensures that there is the root node
         foreach(BTNode node in tree.GetNodes())
         {
             CreateGraphNode(node);
+        }
+    }
+
+    internal void SaveTree()
+    {
+        if(tree)
+        {
+            tree.SaveTree();
         }
     }
 }
