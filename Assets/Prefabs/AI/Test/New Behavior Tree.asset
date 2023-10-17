@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7500389883599904109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360cbfdf5b86e4f4b94ba3ee049f16f5, type: 3}
+  m_Name: BTTask_Log
+  m_EditorClassIdentifier: 
+  graphPos: {x: 488, y: 362}
+  guid: 4497b874d32d7334a8353f037c167201
+  message: 
+--- !u!114 &-2085107343890375390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36397b63d79b0145b61e8a9bd36ab8d, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  graphPos: {x: 331, y: 206}
+  guid: 3c540265b22c5f748989a08fe14d6f7f
 --- !u!114 &-27242509272124818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +42,8 @@ MonoBehaviour:
   m_Name: BTNode_Root
   m_EditorClassIdentifier: 
   graphPos: {x: 340, y: 62}
-  child: {fileID: 0}
+  guid: 275f14bead21fd045afc5b360877b2ec
+  child: {fileID: -2085107343890375390}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,3 +59,21 @@ MonoBehaviour:
   rootNode: {fileID: -27242509272124818}
   nodes:
   - {fileID: -27242509272124818}
+  - {fileID: -2085107343890375390}
+  - {fileID: 8380616769939297942}
+  - {fileID: -7500389883599904109}
+--- !u!114 &8380616769939297942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4642c921ce6a48a2d9c13daad09db, type: 3}
+  m_Name: BTTask_Wait
+  m_EditorClassIdentifier: 
+  graphPos: {x: 256, y: 356.2}
+  guid: d189c275167ab2245b2f83d2e17803c4
+  waitTime: 2

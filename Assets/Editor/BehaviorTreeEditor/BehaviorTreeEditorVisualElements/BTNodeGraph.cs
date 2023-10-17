@@ -77,6 +77,7 @@ public class BTNodeGraph : GraphView
             }
         }
 
+        //prevent root node to be removed.
         if(elementToKeep != null)
         {
             elementsToRemove.Remove(elementToKeep);
@@ -138,6 +139,23 @@ public class BTNodeGraph : GraphView
         foreach(BTNode node in tree.GetNodes())
         {
             CreateGraphNode(node);
+        }
+
+        foreach(BTNode node in tree.GetNodes())
+        {
+            IBTNodeParent nodeAsParent = node as IBTNodeParent;
+            if(nodeAsParent != null)
+            {
+                BTGraphNode graphNode = GetNodeByGuid(node.GetGUID()) as BTGraphNode;
+
+                foreach(BTNode child in nodeAsParent.GetChildren())
+                {
+                    BTGraphNode childGraphNode = GetNodeByGuid(child.GetGUID()) as BTGraphNode;
+
+                    Edge newEdge = graphNode.GetOutputPort().ConnectTo(childGraphNode.GetInputPort());
+                    AddElement(newEdge);
+                }
+            }
         }
     }
 
