@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -24,6 +23,33 @@ public class BTNodeGraph : GraphView
 
         StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/BehaviorTreeEditor/BehaviorTreeEditor.uss");
         styleSheets.Add(styleSheet);
+        graphViewChanged += GraphChange;
+    }
+
+    //this function will be called if the graph changes.
+    private GraphViewChange GraphChange(GraphViewChange graphViewChange)
+    {
+        if(graphViewChange.edgesToCreate != null)
+        {
+            HandleEdgeCreation(graphViewChange.edgesToCreate);
+        }
+
+        return graphViewChange;
+    }
+
+    private void HandleEdgeCreation(List<Edge> edgesToCreate)
+    {
+        foreach(Edge edge in edgesToCreate)
+        {
+            BTGraphNode inputGraphNode = edge.output.node as BTGraphNode;
+            BTGraphNode outputGraphNode = edge.input.node as BTGraphNode;
+        
+            IBTNodeParent parent = inputGraphNode.Node as IBTNodeParent;
+            if(parent != null)
+            {
+                parent.AddChild(outputGraphNode.Node);
+            }
+        }
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
@@ -72,5 +98,35 @@ public class BTNodeGraph : GraphView
         {
             tree.SaveTree();
         }
+    }
+
+    public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+    {
+        List<Port> compatiblePorts = new List<Port>();
+
+        foreach (Port port in ports)
+        {
+            if (startPort == port) continue;
+            if (port.node == startPort.node) continue;
+            if(port.direction == startPort.direction) continue;
+            
+            BTGraphNode graphNode = port.node as BTGraphNode;
+            BTGraphNode startPortGraphNode = startPort.node as BTGraphNode;
+
+            BTNode node = graphNode.Node;
+            BTNode startNode = startPortGraphNode.Node;
+
+            if(startPort.direction == Direction.Output)
+            {
+                if(node.Contains(startNode))
+                {
+                    continue;
+                }
+            }
+
+            compatiblePorts.Add(port);
+        }
+
+        return compatiblePorts;
     }
 }

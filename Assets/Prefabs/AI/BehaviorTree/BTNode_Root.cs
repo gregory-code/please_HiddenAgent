@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BTNode_Root : BTNode, IBTNodeParent
 {
+    [SerializeField]
     BTNode child;
 
     public override BTNodePortType GetInputPortType()
@@ -50,5 +51,15 @@ public class BTNode_Root : BTNode, IBTNodeParent
     protected override BTNodeResult Update()
     {
         return child.UpdateNode();
+    }
+
+    public override bool Contains(BTNode node)
+    {
+        if(child.Contains(node))
+        {
+            return true;
+        }
+
+        return base.Contains(node);
     }
 }

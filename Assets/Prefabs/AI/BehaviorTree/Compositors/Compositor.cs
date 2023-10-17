@@ -62,4 +62,17 @@ public abstract class Compositor : BTNode, IBTNodeParent
             children.AddLast(child);
         }
     }
+
+    public override bool Contains(BTNode node)
+    {
+        foreach(BTNode child in children)
+        {
+            if(child.Contains(node))
+            {
+                return true;
+            }
+        }
+
+        return base.Contains(node);
+    }
 }

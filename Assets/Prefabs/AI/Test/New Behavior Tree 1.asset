@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1079714791029494236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4642c921ce6a48a2d9c13daad09db, type: 3}
+  m_Name: BTTask_Wait
+  m_EditorClassIdentifier: 
+  graphPos: {x: 210, y: 262}
+  waitTime: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,6 +29,7 @@ MonoBehaviour:
   rootNode: {fileID: 5431529866035590173}
   nodes:
   - {fileID: 5431529866035590173}
+  - {fileID: -1079714791029494236}
 --- !u!114 &5431529866035590173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,3 +43,4 @@ MonoBehaviour:
   m_Name: BTNode_Root
   m_EditorClassIdentifier: 
   graphPos: {x: 196.28, y: 115.44}
+  child: {fileID: -1079714791029494236}
