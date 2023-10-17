@@ -49,9 +49,16 @@ public class BTNodeGraph : GraphView
         foreach(GraphElement element in elementsToRemove)
         {
             BTGraphNode graphNode = element as BTGraphNode;
-            if(graphNode.Node.GetType() == typeof(BTNode_Root))
+            if (graphNode != null)
             {
-                elementToKeep = element;
+                if (graphNode.Node.GetType() == typeof(BTNode_Root))
+                {
+                    elementToKeep = element;
+                }
+                else
+                {
+                    tree.RemoveNode(graphNode.Node);
+                }
             }
         }
 

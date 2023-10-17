@@ -53,4 +53,11 @@ public class BehaviorTree : ScriptableObject
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssetIfDirty(this);
     }
+
+    public void RemoveNode(BTNode node)
+    {
+        nodes.Remove(node);
+        AssetDatabase.RemoveObjectFromAsset(node);
+        SaveTree();
+    }
 }
