@@ -84,7 +84,8 @@ public class BehaviorTree : ScriptableObject
             (BTNode node) =>
         {
             clone.nodes.Add(node);
-        });
+        }
+        );
 
         return clone;
     }
@@ -101,4 +102,8 @@ public class BehaviorTree : ScriptableObject
             }
         }
     }
+
+    // () is the call operator.
+    // [] is the subscription operator.
+    // = - = * also operators.
 }
