@@ -9,4 +9,5 @@ public interface IBTNodeParent
     List<BTNode> GetChildren();
     void RemoveChild(BTNode childToRemove);
     void AddChild(BTNode childToAdd);
+    void SortChildren();
 }
