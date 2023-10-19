@@ -10,6 +10,8 @@ public class BTNodeGraph : GraphView
 {
     public new class UxmlFactory : UxmlFactory<BTNodeGraph, UxmlTraits> { }
 
+    public event BTGraphNode.OnNodeSelected onNodeSelected;
+
     BehaviorTree tree;
 
     public BTNodeGraph()
@@ -128,6 +130,9 @@ public class BTNodeGraph : GraphView
     private void CreateGraphNode(BTNode newNode)
     {
         BTGraphNode newGraphNode = new BTGraphNode(newNode);
+        
+        newGraphNode.onNodeSelected += onNodeSelected;
+
         AddElement(newGraphNode);
     }
 

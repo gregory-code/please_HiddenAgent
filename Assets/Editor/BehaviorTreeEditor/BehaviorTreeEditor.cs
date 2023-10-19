@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -8,6 +9,7 @@ public class BehaviorTreeEditor : EditorWindow
     private VisualTreeAsset m_VisualTreeAsset = default;
 
     private BTNodeGraph m_BTNodeGraph = null;
+    private BTInspector m_BTInspector = null;
 
     [MenuItem("BehaviorTree/BehaviorTreeEditor")]
     public static void ShowEditor()
@@ -23,6 +25,13 @@ public class BehaviorTreeEditor : EditorWindow
 
         m_VisualTreeAsset.CloneTree(root);
         m_BTNodeGraph = root.Q<BTNodeGraph>();
+        m_BTNodeGraph.onNodeSelected += NodeSelected;
+        m_BTInspector = root.Q<BTInspector>();
+    }
+
+    private void NodeSelected(BTNode node)
+    {
+        m_BTInspector.ShowInspectorGUI(node);
     }
 
     //this is called when the selection is changed in the editor

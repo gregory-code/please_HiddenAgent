@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BTGraphNode : Node
 {
     public BTNode Node { get; private set; }
+
+    public delegate void OnNodeSelected(BTNode node);
+    public event OnNodeSelected onNodeSelected;
 
     Port inputPort;
     Port outputPort;
@@ -65,5 +69,11 @@ public class BTGraphNode : Node
     {
         base.SetPosition(newPos);
         Node.SetGraphPosition(new Vector2(newPos.xMin, newPos.yMin));
+    }
+
+    public override void OnSelected()
+    {
+        base.OnSelected();
+        onNodeSelected?.Invoke(Node);
     }
 }
