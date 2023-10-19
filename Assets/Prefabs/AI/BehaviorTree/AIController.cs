@@ -15,6 +15,16 @@ public class AIController : MonoBehaviour
         behaviorTree?.PreConstruct();
     }
 
+    public BehaviorTree GetBehaviorTree()
+    {
+        if(behaviorTree)
+        {
+            return behaviorTree;
+        }
+
+        return behaviorTreeAsset;
+    }
+
     // Update is called once per frame
     void Update()
     {

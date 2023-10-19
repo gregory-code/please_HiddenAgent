@@ -29,6 +29,15 @@ public class BehaviorTreeEditor : EditorWindow
     private void OnSelectionChange()
     {
         BehaviorTree selectedAsTree = Selection.activeObject as BehaviorTree;
+
+        if(selectedAsTree == null)
+        {
+            if(Selection.activeGameObject)
+            {
+                selectedAsTree = Selection.activeGameObject.GetComponent<AIController>()?.GetBehaviorTree();
+            }
+        }
+
         if (selectedAsTree != null)
         {
             m_BTNodeGraph.PoulateTree(selectedAsTree);
