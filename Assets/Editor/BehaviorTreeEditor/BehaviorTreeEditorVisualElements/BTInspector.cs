@@ -11,6 +11,9 @@ public class BTInspector : VisualElement
     internal void ShowInspectorGUI(BTNode node)
     {
         Clear();
+
+        UnityEngine.Object.DestroyImmediate(editor);
+
         editor = Editor.CreateEditor(node);
 
         IMGUIContainer container = new IMGUIContainer(()=>
