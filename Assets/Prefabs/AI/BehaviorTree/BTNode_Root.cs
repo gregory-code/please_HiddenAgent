@@ -5,6 +5,7 @@ using UnityEngine;
 public class BTNode_Root : BTNode, IBTNodeParent
 {
     [SerializeField]
+    [HideInInspector]
     BTNode child;
 
     public override BTNodePortType GetInputPortType()

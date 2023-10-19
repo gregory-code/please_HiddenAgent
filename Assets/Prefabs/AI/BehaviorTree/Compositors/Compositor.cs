@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class Compositor : BTNode, IBTNodeParent
 {
     [SerializeField]
+    [HideInInspector]
     List<BTNode> children = new List<BTNode>();
 
     int currentChildIndex = -1;

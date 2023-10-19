@@ -27,6 +27,16 @@ public class BehaviorTreeEditor : EditorWindow
         m_BTNodeGraph = root.Q<BTNodeGraph>();
         m_BTNodeGraph.onNodeSelected += NodeSelected;
         m_BTInspector = root.Q<BTInspector>();
+
+        EditorApplication.playModeStateChanged += PlayModeChanged;
+    }
+
+    private void PlayModeChanged(PlayModeStateChange change)
+    {
+        if(change == PlayModeStateChange.EnteredEditMode || change == PlayModeStateChange.EnteredPlayMode)
+        {
+            OnSelectionChange();
+        }
     }
 
     private void NodeSelected(BTNode node)

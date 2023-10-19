@@ -27,6 +27,25 @@ public class BTGraphNode : Node
 
         CreatePorts();
         viewDataKey = node.GetGUID();
+        node.onNodeStateChanged += NodeStateChanged;
+    }
+
+    private void NodeStateChanged(BTNodeResult newState)
+    {
+        switch (newState)
+        {
+            case BTNodeResult.Success:
+                style.backgroundColor = Color.gray;
+                break;
+            case BTNodeResult.InProgress:
+                style.backgroundColor = Color.green;
+                break;
+            case BTNodeResult.Failure:
+                style.backgroundColor = Color.red;
+                break;
+            default:
+                break;
+        }
     }
 
     private void CreatePorts()

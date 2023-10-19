@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static BTNode;
 
 public enum BTNodeResult
 {
@@ -20,12 +21,16 @@ public enum BTNodePortType
 
 public abstract class BTNode : ScriptableObject
 {
+    public delegate void OnNodeStateChanged(BTNodeResult newState);
+    public event OnNodeStateChanged onNodeStateChanged;
     bool isStarted = false;
 
     [SerializeField]
+    [HideInInspector]
     Vector2 graphPos;
 
     [SerializeField]
+    [HideInInspector]
     string guid = "";
 
     public virtual BTNodePortType GetInputPortType()
@@ -45,6 +50,7 @@ public abstract class BTNode : ScriptableObject
         if(!isStarted)
         {
             BTNodeResult executeResult = Execute();
+            onNodeStateChanged?.Invoke(executeResult);
             isStarted = true;
             //if not in progess, we have either failed or successed.
             if(executeResult != BTNodeResult.InProgress)
@@ -55,6 +61,8 @@ public abstract class BTNode : ScriptableObject
         }
 
         BTNodeResult updateResult = Update();
+        onNodeStateChanged?.Invoke(updateResult);
+
         if (updateResult != BTNodeResult.InProgress)
         {
             End();
