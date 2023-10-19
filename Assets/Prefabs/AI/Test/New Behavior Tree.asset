@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab91bfcc917141c4485c8b5d5cf92cc0, type: 3}
   m_Name: BTTask_AlwaysFail
   m_EditorClassIdentifier: 
-  graphPos: {x: 698.1501, y: 480.50006}
+  graphPos: {x: 629.4945, y: 466.45255}
   guid: a824e24d27023564386a65c9d4261b63
 --- !u!114 &-27242509272124818
 MonoBehaviour:
