@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a2c2d38495ef84a90ccc0bc13b05f2, type: 3}
   m_Name: BTNode_Root
   m_EditorClassIdentifier: 
-  graphPos: {x: 340, y: 62}
+  graphPos: {x: 354, y: 61}
   guid: 275f14bead21fd045afc5b360877b2ec
-  child: {fileID: 0}
+  child: {fileID: 5704692871441326400}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab91bfcc917141c4485c8b5d5cf92cc0, type: 3}
   m_Name: BTTask_AlwaysFail
   m_EditorClassIdentifier: 
-  graphPos: {x: 213, y: 321}
+  graphPos: {x: 468, y: 311}
   guid: ed00e9038a67cb6478122df655bbe284
 --- !u!114 &5704692871441326400
 MonoBehaviour:
@@ -59,9 +59,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1fe1b68cb2d6e4e8b52d99a8b1b473, type: 3}
   m_Name: Sequencer
   m_EditorClassIdentifier: 
-  graphPos: {x: 0, y: 0}
-  guid: 
-  children: []
+  graphPos: {x: 348, y: 190}
+  guid: f5cfdca23cd60d84088e2b9998375e29
+  children:
+  - {fileID: 8380616769939297942}
+  - {fileID: 4817869981811528772}
 --- !u!114 &8380616769939297942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b4642c921ce6a48a2d9c13daad09db, type: 3}
   m_Name: BTTask_Wait
   m_EditorClassIdentifier: 
-  graphPos: {x: 525.16, y: 319.2}
+  graphPos: {x: 282, y: 312}
   guid: d189c275167ab2245b2f83d2e17803c4
-  waitTime: 2
+  waitTime: 10

@@ -97,4 +97,17 @@ public abstract class Compositor : BTNode, IBTNodeParent
 
         return 0;
     }
+
+    public override BTNode CloneNode()
+    {
+        Compositor compositorClone = Instantiate(this);
+        compositorClone.children = new List<BTNode>();
+
+        foreach(BTNode child in children)
+        {
+            compositorClone.children.Add(child.CloneNode());
+        }
+
+        return compositorClone;
+    }
 }

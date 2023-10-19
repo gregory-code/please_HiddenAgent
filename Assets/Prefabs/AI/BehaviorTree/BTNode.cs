@@ -101,4 +101,9 @@ public abstract class BTNode : ScriptableObject
 
         return guid;
     }
+
+    public virtual BTNode CloneNode()
+    {
+        return Instantiate(this);
+    }
 }

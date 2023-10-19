@@ -72,4 +72,12 @@ public class BehaviorTree : ScriptableObject
             }
         }
     }
+
+    internal BehaviorTree CloneTree()
+    {
+        BehaviorTree clone = Instantiate(this);
+        clone.rootNode = rootNode.CloneNode() as BTNode_Root;
+        
+        return clone;
+    }
 }

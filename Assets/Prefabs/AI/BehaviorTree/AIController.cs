@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    [SerializeField] BehaviorTree behaviorTree;
+    [SerializeField] BehaviorTree behaviorTreeAsset;
+
+    BehaviorTree behaviorTree;
+
     // Start is called before the first frame update
     void Start()
     {
+        behaviorTree = behaviorTreeAsset.CloneTree();
         behaviorTree?.PreConstruct();
     }
 

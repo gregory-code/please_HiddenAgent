@@ -72,4 +72,11 @@ public class BTNode_Root : BTNode, IBTNodeParent
     {
 
     }
+
+    public override BTNode CloneNode()
+    {
+        BTNode_Root selfClone = Instantiate(this);
+        selfClone.child = child.CloneNode();
+        return selfClone;
+    }
 }
