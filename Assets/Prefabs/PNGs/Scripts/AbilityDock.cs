@@ -9,6 +9,7 @@ public class AbilityDock : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] AbilityComponent owningAbility;
     [SerializeField] AbiliyWidget abilityWidgetPrefab;
+    [SerializeField] float scaleRange = 100f;
 
     [SerializeField] RectTransform widgetRoot;
 
@@ -48,6 +49,33 @@ public class AbilityDock : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if(touchData != null)
         {
             highlightedAbilityWidget = GetWidgetFromTouchData();
+        }
+
+        UpdateScale();
+    }
+
+    private void UpdateScale()
+    {
+        if(touchData == null)
+        {
+            abilityWidgets.ForEach(widget => { widget.SetScaleAmount(0); }); // for each very powerful
+        }
+        else
+        {
+            float touchPosY = touchData.position.y;
+            foreach(AbiliyWidget widet in abilityWidgets)
+            {
+                float widgetPosY = widet.transform.position.y;
+                float distanceY = Mathf.Abs(widgetPosY - touchPosY);
+                if(distanceY > scaleRange)
+                {
+                    widet.SetScaleAmount(0);
+                }
+                else
+                {
+                    widet.SetScaleAmount((scaleRange - distanceY) / scaleRange);
+                }
+            }
         }
     }
 

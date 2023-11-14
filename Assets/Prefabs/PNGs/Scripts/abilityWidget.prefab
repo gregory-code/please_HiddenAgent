@@ -287,3 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 726552305919298894}
   cooldownImage: {fileID: 8807579265415651363}
+  highlightedScale: 1.2
+  scaleSpeed: 20
+  highlightOffset: 100
+  widgetRoot: {fileID: 1187261679014439231}

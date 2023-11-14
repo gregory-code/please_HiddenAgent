@@ -10,6 +10,21 @@ public class AbiliyWidget : MonoBehaviour
     Ability ability;
     [SerializeField] Image icon;
     [SerializeField] Image cooldownImage;
+    [SerializeField] float highlightedScale = 1.2f;
+    [SerializeField] float scaleSpeed = 20f;
+    [SerializeField] float highlightOffset = 100f;
+
+    [SerializeField] RectTransform widgetRoot;
+
+    Vector3 goalScale = Vector3.one;
+    Vector3 goalOffset = Vector3.zero;
+
+    //amt == 0 not scaled, amt == 1 means scaled to 1.5 or highlighted scale
+    public void SetScaleAmount(float amt)
+    {
+        goalScale = Vector3.one * (1 + amt * (highlightedScale - 1));
+        goalOffset = Vector3.left * amt * highlightOffset;
+    }
 
     internal void Init(Ability ability)
     {
@@ -39,5 +54,11 @@ public class AbiliyWidget : MonoBehaviour
     public void ActivateAbility()
     {
         ability.ActivateAbility();
+    }
+
+    private void Update()
+    {
+        widgetRoot.transform.localPosition = Vector3.Lerp(widgetRoot.transform.localPosition, goalOffset, Time.deltaTime * scaleSpeed);
+        widgetRoot.transform.localScale = Vector3.Lerp(widgetRoot.transform.localScale, goalScale, Time.deltaTime * scaleSpeed);
     }
 }
