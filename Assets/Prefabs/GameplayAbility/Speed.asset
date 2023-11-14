@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9766d6bc9048e5b4f841a7b0ae45aaa0, type: 3}
   m_Name: Speed
   m_EditorClassIdentifier: 
-  staminaCost: 0
-  cooldownDuration: 0
-  boostAmt: 0
-  boostDuration: 0
+  staminaCost: 5
+  cooldownDuration: 5
+  icon: {fileID: 21300000, guid: 08f82aaadeed4a849be0db64eacbcee5, type: 3}
+  boostAmt: 6
+  boostDuration: 3
