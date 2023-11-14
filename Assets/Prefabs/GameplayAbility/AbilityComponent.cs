@@ -6,23 +6,38 @@ using System;
 public class AbilityComponent : MonoBehaviour
 {
     [SerializeField] Ability[] initialAbilities;
+    [SerializeField] float stamina = 100;
+    [SerializeField] float maxStamina = 100;
     List<Ability> abilities = new List<Ability>();
 
     public event Action<Ability> onNewAbilityAdded;
+    public event Action<float, float> onStaminaChanged;
 
     private void Start()
     {
-        GiveAbility();
-    }
-
-    private void GiveAbility()
-    {
         foreach (Ability ability in initialAbilities)
         {
-            Ability newAbility = Instantiate(ability);
-            newAbility.Init(this);
-            abilities.Add(newAbility);
-            onNewAbilityAdded?.Invoke(newAbility);
+            GiveAbility(ability);
         }
+    }
+
+    private void GiveAbility(Ability ability)
+    {
+        Ability newAbility = Instantiate(ability);
+        newAbility.Init(this);
+        abilities.Add(newAbility);
+        onNewAbilityAdded?.Invoke(newAbility);
+    }
+
+    internal bool TryConsumeStamina(float staminaCost)
+    {
+        if(stamina >= staminaCost)
+        {
+            stamina -= staminaCost;
+            onStaminaChanged?.Invoke(stamina, maxStamina);
+            return true;
+        }
+
+        return false;
     }
 }

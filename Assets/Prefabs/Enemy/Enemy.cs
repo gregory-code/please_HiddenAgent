@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
-
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, MovementInterface, IBTTaskInterface, ITeamInterface
 {
@@ -20,6 +19,8 @@ public class Enemy : MonoBehaviour, MovementInterface, IBTTaskInterface, ITeamIn
 
     MovementComponent movementComponent;
 
+    NavMeshAgent agent;
+
     ValueGuage healthBar;
 
     private void Awake()
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour, MovementInterface, IBTTaskInterface, ITeamIn
 
         damageComponent.SetTeamInterface(this);
 
-        
+        agent = GetComponent<NavMeshAgent>();
 
         healthBar = Instantiate(healthBarPrefab, FindObjectOfType<Canvas>().transform);
         UIAttachComponent attachmentComp = healthBar.AddComponent<UIAttachComponent>();
@@ -102,5 +103,15 @@ public class Enemy : MonoBehaviour, MovementInterface, IBTTaskInterface, ITeamIn
     public void AttackPoint()
     {
         damageComponent.DoDamage();
+    }
+
+    public float GetMoveSpeed()
+    {
+        return agent.speed;
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        agent.speed = speed;
     }
 }
