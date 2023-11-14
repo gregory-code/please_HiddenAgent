@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="BehaviorTree/BehaviorTree")]
@@ -13,7 +14,15 @@ public class BehaviorTree : ScriptableObject
     [SerializeField]
     List<BTNode> nodes;
 
+    BTNode currentNode;
+
     //getter or accssor for the nodes
+
+    bool stopped;
+
+    [SerializeField] Blackboard blackboard;
+
+    public Blackboard GetBlackBoard() { return blackboard; }
     public List<BTNode> GetNodes() { return nodes; }
     public void PreConstruct()
     {
@@ -31,8 +40,41 @@ public class BehaviorTree : ScriptableObject
 
     }
 
+    public void AbortIfCurrentIsLower(int priority)
+    {
+        if(currentNode.GetPriority() > priority)
+        {
+            rootNode.End();
+        }
+    }
+
+    public void Start()
+    {
+        SortTree();
+        foreach(BTNode node in nodes)
+        {
+            node.onBecomeActive -= CurrentNodeChanged;
+            node.onBecomeActive += CurrentNodeChanged;
+        }
+        stopped = false;
+    }
+
+    public void Stop()
+    {
+        stopped = true;
+        rootNode.End();
+    }
+
+    private void CurrentNodeChanged(BTNode node)
+    {
+        currentNode = node;
+    }
+
     public void Update()
     {
+        if (stopped)
+            return;
+
         rootNode.UpdateNode();
     }
 
@@ -40,6 +82,7 @@ public class BehaviorTree : ScriptableObject
     {
         BTNode newNode = ScriptableObject.CreateInstance(nodeType) as BTNode;
         newNode.name = nodeType.Name;
+        newNode.Init(this);
         nodes.Add(newNode);
         AssetDatabase.AddObjectToAsset(newNode, this);
 
@@ -50,6 +93,7 @@ public class BehaviorTree : ScriptableObject
 
     public void SaveTree()
     {
+        SortTree();
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssetIfDirty(this);
     }
@@ -57,7 +101,7 @@ public class BehaviorTree : ScriptableObject
     public void RemoveNode(BTNode node)
     {
         nodes.Remove(node);
-        AssetDatabase.RemoveObjectFromAsset(node);
+        //AssetDatabase.RemoveObjectFromAsset(node);
         SaveTree();
     }
 
@@ -71,6 +115,11 @@ public class BehaviorTree : ScriptableObject
                 parent.SortChildren();
             }
         }
+        int priorityCounter = 0;
+        Traverse(rootNode, (BTNode n) =>
+        {
+            n.SortPriority(ref priorityCounter);
+        });
     }
 
     internal BehaviorTree CloneTree()
@@ -79,11 +128,13 @@ public class BehaviorTree : ScriptableObject
         clone.rootNode = rootNode.CloneNode() as BTNode_Root;
 
         clone.nodes = new List<BTNode>();
+        clone.blackboard = Instantiate(blackboard);
 
         Traverse(clone.rootNode, 
             (BTNode node) =>
         {
             clone.nodes.Add(node);
+            node.Init(clone);
         }
         );
 

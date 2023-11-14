@@ -33,6 +33,57 @@ public abstract class BTNode : ScriptableObject
     [HideInInspector]
     string guid = "";
 
+    [SerializeField] int priority;
+    public int GetPriority() { return priority; }
+    public void SortPriority(ref int priorityCount)
+    {
+        priority = priorityCount++;
+    }
+
+    BehaviorTree owningBehaviorTree;
+    public Action<BTNode> onBecomeActive;
+
+    public Blackboard GetBlackboard()
+    {
+        if(GetBehaviorTree())
+        {
+            return GetBehaviorTree().GetBlackBoard();
+        }
+        return null;
+    }
+
+    public GameObject GetOwner()
+    {
+        if(GetBlackboard())
+        {
+            GetBlackboard().GetBlackboardData("owner", out GameObject owner);
+            return owner;
+        }
+
+        return null;
+    }
+
+    public IBTTaskInterface GetInterface()
+    {
+        GameObject owner = GetOwner();
+        if(owner)
+        {
+            return owner.GetComponent<IBTTaskInterface>();
+
+        }
+        return null;
+    }
+
+    public void Init(BehaviorTree behaviourTree)
+    {
+        owningBehaviorTree = behaviourTree;
+    }
+
+    public BehaviorTree GetBehaviorTree()
+    {
+        return owningBehaviorTree;
+    }
+
     public virtual BTNodePortType GetInputPortType()
     {
         return BTNodePortType.Single;
@@ -49,6 +100,7 @@ public abstract class BTNode : ScriptableObject
     {
         if(!isStarted)
         {
+            onBecomeActive?.Invoke(this);
             BTNodeResult executeResult = Execute();
             onNodeStateChanged?.Invoke(executeResult);
             isStarted = true;
@@ -70,7 +122,7 @@ public abstract class BTNode : ScriptableObject
         return updateResult;
     }
 
-    protected virtual void End()
+    public virtual void End()
     {
         isStarted = false;
     }

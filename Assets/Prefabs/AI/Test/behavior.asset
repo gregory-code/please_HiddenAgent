@@ -1,0 +1,353 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9109060181558675516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1fe1b68cb2d6e4e8b52d99a8b1b473, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  graphPos: {x: 8.800003, y: 310.19998}
+  guid: b68d6d12965bbc34eb4dc9c61e56e4ad
+  priority: 3
+  children:
+  - {fileID: 7500776480449249672}
+  - {fileID: -2858998881195439871}
+  - {fileID: 1670638462805510185}
+--- !u!114 &-8283334704432900414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4642c921ce6a48a2d9c13daad09db, type: 3}
+  m_Name: BTTask_Wait
+  m_EditorClassIdentifier: 
+  graphPos: {x: 377.59998, y: 535.19995}
+  guid: 9a286afb75cca5342b396aee814d3542
+  priority: 10
+  waitTime: 2
+--- !u!114 &-4993057663634151703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b54975861ebc654a8d02c5afa8461d7, type: 3}
+  m_Name: BTTask_MoveToPosition
+  m_EditorClassIdentifier: 
+  graphPos: {x: 176.8, y: 534.8}
+  guid: 02cb35bcdb497c447a1525d9d132b385
+  priority: 9
+  positionKeyName: lastSeenLocation
+  acceptableDistance: 2
+--- !u!114 &-4798398061670959927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b54975861ebc654a8d02c5afa8461d7, type: 3}
+  m_Name: BTTask_MoveToPosition
+  m_EditorClassIdentifier: 
+  graphPos: {x: 1063, y: 290.40002}
+  guid: 49e0a2eee7e15454faa712ce8b6b7765
+  priority: 17
+  positionKeyName: nextPatrolPoint
+  acceptableDistance: 2
+--- !u!114 &-4742557938090184736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ba8b1a2d5308b44982e4843ad24033, type: 3}
+  m_Name: BTTask_ClearBlackBoardEntry
+  m_EditorClassIdentifier: 
+  graphPos: {x: 909.6, y: 535.2}
+  guid: 5f97929503d2efc419dde4bd1e564584
+  priority: 14
+  blackBloardKeyName: lastSeenLocation
+--- !u!114 &-2858998881195439871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae39a8529c2def49a9960144b94bc1e, type: 3}
+  m_Name: BTTask_RotateTowardsTarget
+  m_EditorClassIdentifier: 
+  graphPos: {x: -211.20001, y: 440.2}
+  guid: 55bea3b4ecc6c7d499d145f332e70744
+  priority: 5
+  targetKeyName: target
+  acceptableAngle: 5
+--- !u!114 &-2712985071631629296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4642c921ce6a48a2d9c13daad09db, type: 3}
+  m_Name: BTTask_Wait
+  m_EditorClassIdentifier: 
+  graphPos: {x: 656, y: 535.2}
+  guid: b4ed3e129dce8d0438ce63ed9b11db67
+  priority: 12
+  waitTime: 2
+--- !u!114 &-27242509272124818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a2c2d38495ef84a90ccc0bc13b05f2, type: 3}
+  m_Name: BTNode_Root
+  m_EditorClassIdentifier: 
+  graphPos: {x: 232.8, y: 15.600006}
+  guid: 275f14bead21fd045afc5b360877b2ec
+  priority: 0
+  child: {fileID: 3385768408559040987}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c01baa6beae9024aaa9abca8688e50a, type: 3}
+  m_Name: behavior
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -27242509272124818}
+  nodes:
+  - {fileID: -27242509272124818}
+  - {fileID: 5704692871441326400}
+  - {fileID: 5024579108674633796}
+  - {fileID: -4798398061670959927}
+  - {fileID: 3385768408559040987}
+  - {fileID: -9109060181558675516}
+  - {fileID: 7500776480449249672}
+  - {fileID: 1393174060020749751}
+  - {fileID: -4993057663634151703}
+  - {fileID: 7091102873699181297}
+  - {fileID: -8283334704432900414}
+  - {fileID: 6834847586732346229}
+  - {fileID: -4742557938090184736}
+  - {fileID: 2415503226742419919}
+  - {fileID: -2712985071631629296}
+  - {fileID: 4184705016461905109}
+  - {fileID: -2858998881195439871}
+  - {fileID: 1670638462805510185}
+  blackboard: {fileID: 11400000, guid: 47da5bb30f92945478a309a9a6359358, type: 2}
+--- !u!114 &1393174060020749751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96936b42ba298343a36d05a80d7bfd9, type: 3}
+  m_Name: BlackboardDecorator
+  m_EditorClassIdentifier: 
+  graphPos: {x: 9, y: 168}
+  guid: 6a5c8536ab1754948b4b1ac7d54c6fe7
+  priority: 2
+  child: {fileID: -9109060181558675516}
+  keyName: target
+  runCondition: 0
+  notifyRule: 1
+  notifyAbort: 3
+--- !u!114 &1670638462805510185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be243f9a5dd57a488a1536864f719b8, type: 3}
+  m_Name: BTTask_Attack
+  m_EditorClassIdentifier: 
+  graphPos: {x: 25.599976, y: 440.80005}
+  guid: 64c11b7ce2f38b54b8253c0814051d0e
+  priority: 6
+  keyname: target
+--- !u!114 &2415503226742419919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8340b68ca1e81d45a64296a79cd7b61, type: 3}
+  m_Name: BTTask_Rotate
+  m_EditorClassIdentifier: 
+  graphPos: {x: 523.2, y: 535.2}
+  guid: 00ce5f7823b6a5c40a8f05b353257c46
+  priority: 11
+  angleDegrees: 30
+  acceptableOffset: 5
+  turnSpeed: 2
+--- !u!114 &3385768408559040987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36397b63d79b0145b61e8a9bd36ab8d, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  graphPos: {x: 325.8, y: 115.20001}
+  guid: 71d3935d524886a489ede557210e7cb4
+  priority: 1
+  children:
+  - {fileID: 1393174060020749751}
+  - {fileID: 7091102873699181297}
+  - {fileID: 5704692871441326400}
+--- !u!114 &4184705016461905109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8340b68ca1e81d45a64296a79cd7b61, type: 3}
+  m_Name: BTTask_Rotate
+  m_EditorClassIdentifier: 
+  graphPos: {x: 776.8, y: 535.2}
+  guid: 3a590dcc7712a5d4891a1f29165fc12f
+  priority: 13
+  angleDegrees: -60
+  acceptableOffset: 5
+  turnSpeed: 2
+--- !u!114 &5024579108674633796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77136e2c269c7b43ba5f8187b8bb481, type: 3}
+  m_Name: BTTask_GetNextPatrolPoint
+  m_EditorClassIdentifier: 
+  graphPos: {x: 831.00006, y: 290.40002}
+  guid: da1f708b053b8ac498e103f67ed583dc
+  priority: 16
+  patrolPointKeyName: nextPatrolPoint
+--- !u!114 &5704692871441326400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1fe1b68cb2d6e4e8b52d99a8b1b473, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  graphPos: {x: 858.60004, y: 167.99998}
+  guid: f5cfdca23cd60d84088e2b9998375e29
+  priority: 15
+  children:
+  - {fileID: 5024579108674633796}
+  - {fileID: -4798398061670959927}
+--- !u!114 &6834847586732346229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1fe1b68cb2d6e4e8b52d99a8b1b473, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  graphPos: {x: 472, y: 380.00006}
+  guid: 6ed77fb20ee05d848b3ea68bd584bc89
+  priority: 8
+  children:
+  - {fileID: -4993057663634151703}
+  - {fileID: -8283334704432900414}
+  - {fileID: 2415503226742419919}
+  - {fileID: -2712985071631629296}
+  - {fileID: 4184705016461905109}
+  - {fileID: -4742557938090184736}
+--- !u!114 &7091102873699181297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96936b42ba298343a36d05a80d7bfd9, type: 3}
+  m_Name: BlackboardDecorator
+  m_EditorClassIdentifier: 
+  graphPos: {x: 307.39996, y: 290.40002}
+  guid: e302d8ec0f3dca74294db21b35ca28ba
+  priority: 7
+  child: {fileID: 6834847586732346229}
+  keyName: lastSeenLocation
+  runCondition: 0
+  notifyRule: 0
+  notifyAbort: 0
+--- !u!114 &7500776480449249672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24441c02cc3b31f4d9fd60ba26527007, type: 3}
+  m_Name: BTTask_MoveToGameObject
+  m_EditorClassIdentifier: 
+  graphPos: {x: -435.2, y: 440.2}
+  guid: ce63597d85d0642479f578ee24429808
+  priority: 4
+  targetKeyName: target
+  acceptableDistance: 2
