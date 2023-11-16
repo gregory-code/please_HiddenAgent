@@ -15,6 +15,7 @@ public class Fire : Ability
     [SerializeField] float damageDuration = 3;
 
     [SerializeField] GameObject scanVFX;
+    [SerializeField] GameObject damageVFX;
 
     public override void ActivateAbility()
     {
@@ -30,6 +31,16 @@ public class Fire : Ability
 
     private void ApplyDamage(GameObject target)
     {
-        // Debug.Log($"Damaging: {target}");
+        HealthComponet targetHealth = target.GetComponent<HealthComponet>();
+        if (targetHealth == null)
+            return;
+
+        if (targetHealth.GetComponent<ITeamInterface>().GetRelationTowards(OwningAbility.gameObject) != TeamRelation.Hostile)
+            return;
+
+        DurationDamage damager = targetHealth.gameObject.AddComponent<DurationDamage>();
+        //Do the coroutine//
+
+        damager.Init(damageDuration, damage, targetHealth, OwningAbility.gameObject, damageVFX);
     }
 }

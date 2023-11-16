@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphPos: {x: 1063, y: 290.40002}
   guid: 49e0a2eee7e15454faa712ce8b6b7765
-  priority: 17
+  priority: 18
   positionKeyName: nextPatrolPoint
   acceptableDistance: 2
 --- !u!114 &-4742557938090184736
@@ -83,8 +83,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphPos: {x: 909.6, y: 535.2}
   guid: 5f97929503d2efc419dde4bd1e564584
-  priority: 14
+  priority: 15
   blackBloardKeyName: lastSeenLocation
+--- !u!114 &-3170367553041286207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674e76cfdf963c848a6c9c37da42e7c1, type: 3}
+  m_Name: BTTask_CastAbility
+  m_EditorClassIdentifier: 
+  graphPos: {x: 444.8, y: 636.4}
+  guid: 0c25efa74471506479b184aa5d548d7a
+  priority: 11
+  abilityToCast: {fileID: 11400000, guid: 34943a129ea9c6c4ea93d0fe5aff9db7, type: 2}
 --- !u!114 &-2858998881195439871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphPos: {x: 656, y: 535.2}
   guid: b4ed3e129dce8d0438ce63ed9b11db67
-  priority: 12
+  priority: 13
   waitTime: 2
 --- !u!114 &-27242509272124818
 MonoBehaviour:
@@ -166,6 +182,7 @@ MonoBehaviour:
   - {fileID: 4184705016461905109}
   - {fileID: -2858998881195439871}
   - {fileID: 1670638462805510185}
+  - {fileID: -3170367553041286207}
   blackboard: {fileID: 11400000, guid: 47da5bb30f92945478a309a9a6359358, type: 2}
 --- !u!114 &1393174060020749751
 MonoBehaviour:
@@ -217,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphPos: {x: 523.2, y: 535.2}
   guid: 00ce5f7823b6a5c40a8f05b353257c46
-  priority: 11
+  priority: 12
   angleDegrees: 30
   acceptableOffset: 5
   turnSpeed: 2
@@ -254,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphPos: {x: 776.8, y: 535.2}
   guid: 3a590dcc7712a5d4891a1f29165fc12f
-  priority: 13
+  priority: 14
   angleDegrees: -60
   acceptableOffset: 5
   turnSpeed: 2
@@ -272,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphPos: {x: 831.00006, y: 290.40002}
   guid: da1f708b053b8ac498e103f67ed583dc
-  priority: 16
+  priority: 17
   patrolPointKeyName: nextPatrolPoint
 --- !u!114 &5704692871441326400
 MonoBehaviour:
@@ -288,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphPos: {x: 858.60004, y: 167.99998}
   guid: f5cfdca23cd60d84088e2b9998375e29
-  priority: 15
+  priority: 16
   children:
   - {fileID: 5024579108674633796}
   - {fileID: -4798398061670959927}
@@ -310,6 +327,7 @@ MonoBehaviour:
   children:
   - {fileID: -4993057663634151703}
   - {fileID: -8283334704432900414}
+  - {fileID: -3170367553041286207}
   - {fileID: 2415503226742419919}
   - {fileID: -2712985071631629296}
   - {fileID: 4184705016461905109}

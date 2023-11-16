@@ -21,4 +21,6 @@ MonoBehaviour:
   scanDuration: 0.3
   damage: 40
   damageDuration: 3
-  scanVFX: {fileID: 3380420400691254613, guid: 315ab641dcd141846b9f65a12dd9e8ed, type: 3}
+  scanVFX: {fileID: 7479191161749239158, guid: 5a6965fc6fbf1b144956f71a2d369444, type: 3}
+  damageVFX: {fileID: 7115756511202448410, guid: 37aea68180ba0954aad8e9dbc757e53b,
+    type: 3}
