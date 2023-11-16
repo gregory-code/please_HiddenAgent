@@ -40,4 +40,14 @@ public class AbilityComponent : MonoBehaviour
 
         return false;
     }
+
+    internal float GetStamina()
+    {
+        return stamina;
+    }
+
+    internal float GetMaxStamina()
+    {
+        return maxStamina;
+    }
 }
