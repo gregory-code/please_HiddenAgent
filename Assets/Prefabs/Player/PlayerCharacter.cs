@@ -15,6 +15,7 @@ public class PlayerCharacter : MonoBehaviour, ITeamInterface, MovementInterface
     [SerializeField] int teamID = 1;
     [SerializeField] UIManager uiManager;
 
+
     CharacterController characterController;
     InventoryComponent inventoryComponent;
     HealthComponet healthComponent;
@@ -80,7 +81,7 @@ public class PlayerCharacter : MonoBehaviour, ITeamInterface, MovementInterface
     // Start is called before the first frame update
     void Start()
     {
-        //starting of logics
+        
     }
 
     // Update is called once per frame
