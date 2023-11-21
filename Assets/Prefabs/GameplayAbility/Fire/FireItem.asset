@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireItem
   m_EditorClassIdentifier: 
   title: Fire Wave
-  price: 50
+  price: 120
   icon: {fileID: 21300000, guid: 552f4aeaff27306489ac00d9cf671be9, type: 3}
   item: {fileID: 11400000, guid: 34943a129ea9c6c4ea93d0fe5aff9db7, type: 2}
   description: Damages all enemies in an area

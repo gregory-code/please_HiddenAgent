@@ -11,6 +11,11 @@ public class CreditComponent : MonoBehaviour
 {
     [SerializeField] int credits;
 
+    public int GetCredits()
+    {
+        return credits;
+    }
+
     IPuchaseListener[] purchaseListeners;
 
     private void Awake()

@@ -314,10 +314,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a7a969fd45f1a4d9286fa016611259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myButton: {fileID: 4563989746015950668}
   icon: {fileID: 5399799902471328973}
   itemName: {fileID: 1051823825916606843}
   price: {fileID: 9198073552985829827}
   description: {fileID: 6531831521364850202}
+  grayout: {fileID: 6163793733737713934}
 --- !u!1 &3274347342875834286
 GameObject:
   m_ObjectHideFlags: 0
